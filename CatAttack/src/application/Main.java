@@ -12,9 +12,10 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("/Main.fxml"));
-			Scene scene = new Scene(root,400,400);
+			Scene scene = new Scene(root,root.maxWidth(0),root.maxHeight(0));
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
+			//primaryStage.setResizable(false);
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
