@@ -5,13 +5,13 @@ package application;
  * @author Helen Le, Jose Lopez
  */
 public class CatShop {
-	private int money;
+	private static int moneyOwned;
 	
-	public void spend() {
-		//TODO
+	public static void spend(int cost) {
+		moneyOwned -= cost;
 	}
 	
-	public void earn() {
+	public static void earn(int x) {
 		//TODO
 	}
 	
