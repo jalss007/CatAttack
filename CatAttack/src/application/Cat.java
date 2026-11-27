@@ -22,23 +22,45 @@ public class Cat extends GameObject{
 	private boolean owned;
 	private int upgradeCost;
 	
-	public Cat(int attackPower, int attackSpeed, int attackRange, String attackType, int cost, boolean owned) {
-		super();
+	/**
+	 * @param attackPower
+	 * @param attackSpeed
+	 * @param attackRange
+	 * @param attackPowerGrowthRate
+	 * @param attackSpeedGrowthRate
+	 * @param attackRangeGrowthRate
+	 * @param attackType
+	 * @param cost
+	 * @param owned
+	 * @param upgradeCost
+	 */
+	public Cat(int attackPower, int attackSpeed, int attackRange, int attackPowerGrowthRate, int attackSpeedGrowthRate,
+			int attackRangeGrowthRate, String attackType, int cost, boolean owned, int upgradeCost) {
 		this.attackPower = attackPower;
 		this.attackSpeed = attackSpeed;
 		this.attackRange = attackRange;
+		this.attackPowerGrowthRate = attackPowerGrowthRate;
+		this.attackSpeedGrowthRate = attackSpeedGrowthRate;
+		this.attackRangeGrowthRate = attackRangeGrowthRate;
 		this.attackType = attackType;
 		this.cost = cost;
 		this.owned = owned;
+		this.upgradeCost = upgradeCost;
 	}
 	
+/**
+ * removes cat from the game and returns the player money
+ */
 	public void deleteCat() {
 		reset(); //sends cat off-screen
 		owned = false;
-		//TODO disable functionality
 		
+		CatShop.earn(cost);		
 	}
 	
+	/**
+	 * upgrades the cat's attack/speed/range based on the cat type
+	 */
 	public void upgradeCat() {
 		//upgrades 
 		attackPower += attackPowerGrowthRate;
@@ -46,7 +68,16 @@ public class Cat extends GameObject{
 		attackRange += attackRangeGrowthRate;
 		
 		upgradeCost += 5; //TODO can be a diff number
-//		CatShop.spend(upgradeCost); //TODO
+		CatShop.spend(upgradeCost); //TODO
+	}
+	
+	/**
+	 * Subtracts the cat's cost from the player's funds and allows the cat
+	 * to be used as a defense tower
+	 */
+	public void buyCat() {
+		CatShop.spend(cost);
+		owned = true;
 	}
 	
 	

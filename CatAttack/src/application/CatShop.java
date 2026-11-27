@@ -11,12 +11,12 @@ public class CatShop {
 		moneyOwned -= cost;
 	}
 	
-	public static void earn(int x) {
-		//TODO
+	public static void earn(int cost) {
+		moneyOwned += cost;
 	}
 	
 	public void buyCat() {
-		//TODO
+		//TODO 
 	}
 	
 	public void sellCat() {
